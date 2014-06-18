@@ -8,7 +8,7 @@ except ImportError:
     from distutils.core import setup
 
 
-__version__ = '0.3.0'
+__version__ = '0.4.0'
 __author__ = 'Dmitry Orlov <me@mosquito.su>'
 
 
@@ -17,7 +17,7 @@ setup(name='SimpleAES',
     author=__author__,
     author_email='me@mosquito.su',
     license="MIT",
-    description="Very simple pycrypto AES helper.",
+    description="Very simple pycrypto AES helper and EncryptIO file encryptor",
     platforms="all",
     url="http://github.com/mosquito/simpleaes",
     classifiers=[
