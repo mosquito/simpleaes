@@ -12,7 +12,7 @@ __version__ = '0.4.0'
 __author__ = 'Dmitry Orlov <me@mosquito.su>'
 
 
-setup(name='SimpleAES',
+setup(name='simple_aes',
     version=__version__,
     author=__author__,
     author_email='me@mosquito.su',
