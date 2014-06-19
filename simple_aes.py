@@ -78,7 +78,7 @@ class SimpleAES:
 
 
 class EncryptIO(object):
-    CHUNK_SIZE = 2 ** 30
+    CHUNK_SIZE = 2 ** 25
     COMPRESSOR = gzip.zlib
 
     def __init__(self, key, fd=None, key_size=256, compress=True, compression_level=6):
