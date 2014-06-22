@@ -8,11 +8,11 @@ except ImportError:
     from distutils.core import setup
 
 
-__version__ = '0.3.0'
+__version__ = '0.3.1'
 __author__ = 'Dmitry Orlov <me@mosquito.su>'
 
 
-setup(name='SimpleAES',
+setup(name='simple_aes',
     version=__version__,
     author=__author__,
     author_email='me@mosquito.su',
@@ -25,6 +25,7 @@ setup(name='SimpleAES',
       'Programming Language :: Python',
     ],
     long_description=open('README.rst').read(),
+    package_dir={'': 'src'},
     packages=[
       '.',
     ],
