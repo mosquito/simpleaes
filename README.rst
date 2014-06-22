@@ -17,8 +17,10 @@ Using
     >>> enc.decrypt(encrypted)
     'test'
 
-Parameter "use_salt" use salted alhotithm. You get different encrypted values each times.
-But you must be carefull. This makes encryption of weaker.
+Parameter "use salt" use salted algorithm. You get different encrypted values each times.
+But you must be careful. This may make encryption of weaker. I will try to explain it.
+If you try to encrypt identical phrase more times with salt in theory your encryption key may be opened via differential analysis.
+But when you sure what you not doing it, it's makes encryption stronger.
 
 Encrypting big files
 ++++++++++++++++++++
