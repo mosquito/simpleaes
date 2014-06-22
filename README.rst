@@ -6,7 +6,7 @@ Very simple encryption helper for pycripto
 Installation
 ++++++++++++
 
-        pip install SimpleAES
+        pip install simple-aes
 
 Using
 +++++
