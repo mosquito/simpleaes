@@ -26,8 +26,9 @@ Encrypting big files
 ++++++++++++++++++++
 
 For encrypting big files you may using EncryptIO like this:
+
     >>> print "Encrypting..."
-	>>> f = EncryptIO('secret', open('test', 'wb+'))
+    >>> f = EncryptIO('secret', open('test', 'wb+'))
     >>> f.write('Hello world 1024 times. ' * 1024)
     >>> f.close()
     >>> d = EncryptIO('secret', open('test', 'rb'))
@@ -37,4 +38,5 @@ For encrypting big files you may using EncryptIO like this:
     ...     data += i
     >>> print data
 
-This write data to file with encrypting and LZMA compression.
+This write data to file with encrypting and ZLIB compression.
+You may change compressor via changing class-property COMPRESSOR.
