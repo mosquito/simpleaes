@@ -48,7 +48,7 @@ class SimpleAES:
     def _pad(self, s, block=BLOCK_SIZE):
         length = len(s)
         to_fill = length + (block - length % block)
-        return s.ljust(to_fill, self.JUSTER)
+        return s.ljust(to_fill, '=')
 
     def _unpad(self, s):
         return s.rstrip(self.JUSTER)
