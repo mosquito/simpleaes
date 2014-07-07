@@ -65,7 +65,7 @@ class SimpleAES:
 
     def decrypt(self, enc, binary=False):
         if not binary:
-            enc = base64.urlsafe_b64decode(self._pad(enc, juster='=', block=4))
+            enc = base64.urlsafe_b64decode(self._pad(enc, block=4))
 
         if self.use_salt:
             iv, data = enc[:self.BLOCK_SIZE], enc[self.BLOCK_SIZE:]
