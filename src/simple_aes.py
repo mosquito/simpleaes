@@ -19,7 +19,6 @@ class SimpleAES:
     """
 
     BLOCK_SIZE = AES.block_size
-    JUSTER = "\0"
     CHUNK_SIZE = 2 ** 15
 
     KEYGEN = {
@@ -51,7 +50,7 @@ class SimpleAES:
         return s.ljust(to_fill, '=')
 
     def _unpad(self, s):
-        return s.rstrip(self.JUSTER)
+        return s.rstrip('=')
 
     def encrypt(self, data, binary=False):
         padded = self._pad(data)
@@ -74,7 +73,10 @@ class SimpleAES:
             data = enc
 
         cipher = self._get_cipher(iv=iv)
-        return self._unpad(cipher.decrypt(data))
+        if binary:
+            return cipher.decrypt(data)
+        else:
+            return self._unpad(cipher.decrypt(data))
 
 
 class EncryptIO(object):
