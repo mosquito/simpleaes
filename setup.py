@@ -8,7 +8,7 @@ except ImportError:
     from distutils.core import setup
 
 
-__version__ = '0.3.7'
+__version__ = '0.4.2'
 __author__ = 'Dmitry Orlov <me@mosquito.su>'
 
 
