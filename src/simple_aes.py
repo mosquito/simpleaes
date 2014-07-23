@@ -50,7 +50,7 @@ class SimpleAES:
         return s.ljust(to_fill, '=')
 
     def _unpad(self, s):
-        return s.rstrip('=')
+        return s.rstrip('\0')
 
     def encrypt(self, data, binary=False):
         padded = self._pad(data)
