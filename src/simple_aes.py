@@ -49,9 +49,6 @@ class SimpleAES:
         to_fill = length + (block - length % block)
         return s.ljust(to_fill, '=')
 
-    def _unpad(self, s):
-        return s.rstrip('\0')
-
     def encrypt(self, data, binary=False):
         padded = self._pad(data)
         cipher = self._get_cipher()
@@ -64,7 +61,7 @@ class SimpleAES:
 
     def decrypt(self, enc, binary=False):
         if not binary:
-            enc = base64.urlsafe_b64decode(self._pad(enc, block=4))
+            enc = base64.urlsafe_b64decode(self._pad(str(enc), block=4))
 
         if self.use_salt:
             iv, data = enc[:self.BLOCK_SIZE], enc[self.BLOCK_SIZE:]
@@ -73,10 +70,7 @@ class SimpleAES:
             data = enc
 
         cipher = self._get_cipher(iv=iv)
-        if binary:
-            return cipher.decrypt(data)
-        else:
-            return self._unpad(cipher.decrypt(data))
+        return cipher.decrypt(data)
 
 
 class EncryptIO(object):
