@@ -73,7 +73,7 @@ class SimpleAES:
 
         cipher = self._get_cipher(iv=iv)
         decrypted = cipher.decrypt(data)
-        size = struct.unpack('I', decrypted[0:8])[0]
+        size = struct.unpack('I', decrypted[0:4])[0]
         out = decrypted[4:]
         return out[:size]
 
