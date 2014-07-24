@@ -78,7 +78,6 @@ class SimpleAES:
         return out[:size]
 
 
-
 class EncryptIO(object):
     CHUNK_SIZE = 2 ** 25
     COMPRESSOR = gzip.zlib
