@@ -50,7 +50,8 @@ class SimpleAES:
         return s.ljust(to_fill, '=')
 
     def encrypt(self, data, binary=False):
-        padded = self._pad("{0}{1}".format(struct.pack('Q', len(data)), data))
+        data = str(data)
+        padded = self._pad("{0}{1}".format(struct.pack('I', len(data)), data))
         cipher = self._get_cipher()
         if self.use_salt:
             out = '{0}{1}'.format(cipher.IV, cipher.encrypt(padded))
@@ -60,8 +61,9 @@ class SimpleAES:
         return out if binary else base64.urlsafe_b64encode(out).rstrip('=')
 
     def decrypt(self, enc, binary=False):
+        enc = str(enc)
         if not binary:
-            enc = base64.urlsafe_b64decode(self._pad(str(enc), block=4))
+            enc = base64.urlsafe_b64decode(self._pad(enc, block=4))
 
         if self.use_salt:
             iv, data = enc[:self.BLOCK_SIZE], enc[self.BLOCK_SIZE:]
@@ -71,8 +73,8 @@ class SimpleAES:
 
         cipher = self._get_cipher(iv=iv)
         decrypted = cipher.decrypt(data)
-        size = struct.unpack('Q', decrypted[0:8])[0]
-        out = decrypted[8:]
+        size = struct.unpack('I', decrypted[0:8])[0]
+        out = decrypted[4:]
         return out[:size]
 
 
