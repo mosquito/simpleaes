@@ -50,7 +50,7 @@ class SimpleAES:
         return s.ljust(to_fill, '=')
 
     def encrypt(self, data, binary=False):
-        padded = self._pad(data)
+        padded = self._pad("{0}{1}".format(struct.pack('Q', len(data)), data))
         cipher = self._get_cipher()
         if self.use_salt:
             out = '{0}{1}'.format(cipher.IV, cipher.encrypt(padded))
@@ -70,7 +70,11 @@ class SimpleAES:
             data = enc
 
         cipher = self._get_cipher(iv=iv)
-        return cipher.decrypt(data)
+        decrypted = cipher.decrypt(data)
+        size = struct.unpack('Q', decrypted[0:8])[0]
+        out = decrypted[8:]
+        return out[:size]
+
 
 
 class EncryptIO(object):
